@@ -1,0 +1,58 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<section class="home_content">
+    <section id="home_slider_box">
+        <div>
+            {% for i in slider_main%}
+            <a href="{% url 'action_detail' i.action.id %}"><img src="{{ i.img.url }}" alt="" /></a>
+            {% endfor %}
+    </section>
+    <section class="home_cards">
+        <div class="offers_box">
+            <span>У нас уже<br /><br /><br /><br /><br />предложений</span>
+            <strong>{{count_action}}</strong>
+        </div>
+        <a href="{% url 'get_card' %}" class="home_card activate_card_box">
+            <span>Получить<br />карту</span>
+            <small>Сейчас открыта всего лишь часть партнёров проекта «САХАР»...</small>
+        </a>
+        <a href="{% url 'partners' %}" class="home_card get_card_box">
+            <span>Стать<br />партнером</span>
+            <small>Сейчас открыта всего лишь часть партнёров проекта «САХАР»...</small>
+        </a>
+    </section>
+    <section class="left_col">
+        <article> 
+            {% for i in text %}
+                {{ i.text | safe }}
+            {% endfor %}
+        </article>
+    </section>
+    <section class="right_col">
+        <aside class="stock">
+            <h2>НОВЫЕ АКЦИИ</h2>
+            <ul>
+                {% for i in slider_small %}
+                <li><a href="{% url 'action_detail' i.action.id %}"><img src="/{{ i.img.url }}"/><span>{{ i.action.title }}</span></a></li>
+                {% endfor %}      
+            </ul>
+            <a class="rich_link" href="{% url 'catalog' %}">Каталог скидок</a>               
+        </aside>
+        
+        <aside class="news">
+            <h2>НОВОСТИ</h2>
+            <ul>
+                {% for i in news %}
+                <li><a href="{% url 'news-detail' i.id %}">{{ i.title }}</a>
+                   {{ i.text | striptags | truncatechars:100 }}</li>
+                {% endfor %}                    
+            </ul> 
+            <a class="rich_link" href="{% url 'news' %}">Все новости</a>               
+        </aside>
+    </section>
+    <div class="clear"></div>
+</section>
+<div id="stop"> </div>
+</div>
+{% endblock %}

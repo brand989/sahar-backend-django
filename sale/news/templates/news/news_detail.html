@@ -1,0 +1,55 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<section class="content">
+    <section class="bread_crumbs">
+        <ul><li class="home"><a href="{% url 'index'  %}">Главная</a></li><li><a href="{% url 'news'  %}">Новости</a></li></ul>         
+    </section>
+    <section class="left_col">
+        <header class="page-header">
+            <h1>{{ object.title }}</h1>
+        </header>
+        <article class="news"> 
+            <header class="entry-header">
+                <span class="date">{{ object.date }}</span>
+            </header>            
+               <div class="entry-content">
+               <p>{{ object.text | safe }}</p>
+
+            </div><!-- .entry-content -->
+        </article>
+        
+        
+        <section class="other_news">
+            <h3>Похожие новости</h3>
+            <ul>
+                {% for new in news  %}    
+                    <li>
+                        <span class="date">{{ new.date }}</span>
+                        <a href="{% url 'news-detail' new.id %}"> {{ new.title }} </a>
+                    </li>
+                {% endfor %}
+            </ul>
+                
+        </section>
+
+
+        
+    </section>
+    <section class="right_col">
+        <aside class="stock">
+            <h2>НОВЫЕ АКЦИИ</h2>
+            <ul>
+                {% for i in slider_small %}
+                <li><a href="{% url 'action_detail' i.action.id %}"><img src="/{{ i.img.url }}"/><span>{{ i.action.title }}</span></a></li>
+                {% endfor %}      
+            </ul>
+            <a class="rich_link" href="{% url 'catalog' %}">Каталог скидок</a>               
+        </aside>
+    </section>
+
+    <div class="clear"></div>
+</section>
+<div id="stop"> </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<article> 
+    <header class="page-header">
+        <h1>Список комментариев</h1>
+    </header>
+        <div>
+            <ul class="comments_line"> 
+                {% for com in comment %}
+                        <li >
+
+                            <article> 
+                                <header class="comments-header">
+                                    <h5>Re: {{ com.partner.title }}</h5>
+                                    {{ com.date}} от пользователя <strong>{{ com.avtor }}</strong>
+                                </header>
+                                <p>{{ com.text }}</p>
+                                </article>
+                        </li>
+                        <a href="{% url 'comment-detail' com.id %}">Ссылка на комментарий</a>
+                {% endfor %}
+            </ul>
+        </div>
+
+</article>
+<div id="stop"> </div>
+{% endblock %}

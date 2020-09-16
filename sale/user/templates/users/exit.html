@@ -1,0 +1,11 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<div class="rich_form_box reg_form" >
+    <h2>Вы успешно вышли из аккаунта</h2>
+    <br>
+    <a href="{%   url 'register' %}"  class="btn btn-outline-secondary ">Регистрация</a>
+
+    <a href="{%   url 'user' %}" class="btn btn-outline-secondary ">Войти</a>
+</div>
+{% endblock %}

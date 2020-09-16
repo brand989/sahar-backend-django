@@ -1,0 +1,31 @@
+
+
+{% block content %}
+
+<article> 
+    <header class="page-header">
+        <h1>Комментарии</h1>
+    </header>
+        <div>
+            <ul class="comments_line"> 
+                {% for com in comments %}
+                        <li >
+
+                            <article> 
+                                <header class="comments-header">
+                                    <h5>Re: {{ com.partner.title }}</h5>
+                                    {{ com.date}} от пользователя <strong>{{ com.avtor }}</strong>
+                                </header>
+                                <p>{{ com.text }}</p>
+                                </article>
+                        </li>
+                {% endfor %}
+            </ul>
+        </div>
+        Это блок, который был встроен методом include
+</article>
+
+
+
+
+{% endblock %}

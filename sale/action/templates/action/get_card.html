@@ -1,0 +1,40 @@
+{% extends 'action/wrapper.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block main_section %}
+
+<section class="content">
+    <section class="bread_crumbs">
+        <ul><li class="home"><a href="#">Главная</a></li><li>Получить карту</li></ul>        
+    </section>
+       
+    <h2>Получить карту</h2>
+
+        <article> 
+           
+            {% for i in text %}
+                {{ i.text | safe }}
+            {% endfor %}
+        </article>
+        <h4 align="center" >Бронировать карту</h4>
+        <br>
+        <aside class="zayavka">
+            
+            <div class="rich_form_box reg_form">
+                <form method="POST" id="application_form" class="rich_form" >
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="submit">
+                        <input type="submit" value="отправить" />
+                    </div> 
+                </form>
+            </div> 
+        </aside>   
+        
+    <div class="clear"></div>
+</section>
+<div id="stop"> </div>
+<div id="stop"> </div>
+
+{% endblock %}

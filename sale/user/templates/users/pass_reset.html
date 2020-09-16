@@ -1,0 +1,23 @@
+{% extends 'action/wrapper.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+<div class="rich_form_box reg_form">
+    <br>
+    <h2>Востановление пароля</h2>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <br>
+        <div class="submit">      	
+            <input type="submit" value="Запросить новый пароль" />
+        </div> 
+        <br>
+        <br>
+    </form>
+    
+</div>
+
+{% endblock main_section %}
+

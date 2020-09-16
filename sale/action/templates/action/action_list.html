@@ -1,0 +1,32 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<article> 
+    <header class="page-header">
+        <h1>Подробный каталог</h1>
+    </header>
+    <div id="tabs_box">
+        <ul id="tabs_header" class="red">
+            <li class="red"><a href="#category_partner01">Скидки на весь год</a></li>
+            <li class="blue"><a href="#category_partner02">Супер мега Акция</a></li> 
+        </ul>
+        <div id="category_partner01" class="deals entry-content">
+            <ul> 
+                {% for act in action %}
+                        <li >
+                            <a href="#"><img src="/{{ act.img_title.url }}" alt="" width="470"/></a>
+                            <span class="deals_rate">{{ act.sale }}%</span>
+                            <a href="#" class="deals_name">{{ act.title }}</a>
+                            <a href="#" class="deals_name">{{ act.category }}</a>
+                        </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div id="category_partner02" class="entry-content" style=" display: none;">
+                                                  
+        </div>
+    </div>
+</article>
+<div id="stop"> </div>
+{% endblock %}

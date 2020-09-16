@@ -1,0 +1,24 @@
+{% extends 'action/wrapper.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+{% if user.is_authenticated %}
+<div class="rich_form_box reg_form" >
+  <h3 class="mt-4"> Изменить данные про пользователя </h3>
+  <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      {{ profile_form|crispy }}
+      <div class="submit">
+        <input type="submit" value="Обновить данные" />
+      </div>
+      <br>
+  </form>
+</div>
+{% else %}
+<p> Вы не авторизованы </p>
+ <a href="{%   url 'register' %}"  class="btn btn-outline-secondary mr-2">Пройти регистрацию</a>
+ <a href="{%   url 'user' %}" class="btn btn-outline-secondary">Авторизоваться</a>
+{% endif %}
+<div id="stop"> </div>
+<div id="stop"> </div>
+{% endblock %}

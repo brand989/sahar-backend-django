@@ -1,0 +1,40 @@
+{% extends 'action/wrapper.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block main_section %}
+<div class="site">  
+    <section class="content">
+        <section class="bread_crumbs">
+            <ul><li class="home"><a href="{% url 'index' %}">Главная</a></li><li>Контакты</li></ul>                     
+    </section>
+    <section class="left_col">
+        <article>
+            <header class="page-header">
+                <h1>Обратная связь</h1>
+            </header>
+            <div class="rich_form_box " >
+
+                <form method="POST" id="application_form" class="rich_form" >
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="submit">
+                        <input type="submit" value="отправить" />
+                    </div> 
+                </form>
+            </div>
+        </article>
+    </section>
+    <section class="right_col">
+        <aside class="contacts">
+            <h2>Kонтакты</h2>
+            <p>Чтобы узнать подробные условия участия в программе САХАР, свяжитесь с нами:</p>
+            <p>Телефон: <strong>8 (495) 796-16-30</strong></p>                
+            <p>E-mail: <a href="mailto:info@saharkarta.ru"><strong>info@saharkarta.ru</strong></a></p>                          
+        </aside>
+    </section>
+    <div class="clear"></div>
+    </section>
+    <div id="stop"> </div>
+</div>  
+{% endblock %}

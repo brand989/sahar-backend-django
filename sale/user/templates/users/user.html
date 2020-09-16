@@ -1,0 +1,28 @@
+{% extends 'action/wrapper.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+<h2>Авторизация</h2>
+<div class="rich_form_box login_form">
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <br>
+                <div class="submit">
+                    <a href="{% url 'pass-reset'  %}">Забыли пароль?</a>
+                    <input type="submit" value="войти" />
+                </div> 
+                <br>
+                <br>
+                <div class="submit">
+                <a href="{% url 'register' %}">Зарегистрироваться</a>
+                </div>
+                <br>
+            </form>
+        
+</div>
+
+ <div id="stop"> </div>
+ <div id="stop"> </div>
+ <div id="stop"> </div>
+{% endblock %}

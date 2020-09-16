@@ -1,0 +1,50 @@
+{% extends 'action/wrapper.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+
+<section class="content">
+    <section class="bread_crumbs">
+        <ul><li class="home"><a href="#">Главная</a></li><li>Партнерам</li></ul>        
+    </section>
+    <section class="left_col">
+        <article> 
+            <header class="page-header">
+                <h1>Партнерам</h1>
+            </header>
+            {% for i in text %}
+                {{ i.text | safe }}
+            {% endfor %}
+        </article>
+    </section>
+    <section class="right_col">
+        <aside class="zayavka">
+            <h2>подать заявку</h2>
+            <div class="rich_form_box">
+                <form method="POST" id="application_form" class="rich_form" >
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="submit">
+                        <input type="submit" value="отправить" />
+                    </div> 
+                </form>
+            </div> 
+            
+        </aside>
+        
+        <aside class="news">
+            <h2>НОВОСТИ</h2>
+            <ul>
+                {% for i in news %}
+                <li><a href="{% url 'news-detail' i.id %}">{{ i.title }}</a>
+                   {{ i.text | striptags | truncatechars:100 }}</li>
+                {% endfor %}                    
+            </ul> 
+            <a class="rich_link" href="{% url 'news' %}">Все новости</a>               
+        </aside>
+    </section>
+    <div class="clear"></div>
+</section>
+<div id="stop"> </div>
+</div>
+
+{% endblock %}

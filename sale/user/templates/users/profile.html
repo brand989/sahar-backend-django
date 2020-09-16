@@ -1,0 +1,43 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<section class="content">
+    <section class="bread_crumbs">
+        <ul><li class="home"><a href="{% url 'index' %}">Главная</a></li><li>{{ title }}</li></ul>                     
+</section>
+<h2>{{ title }}</h2>
+    {% if user.is_authenticated %}
+            <div class="my_card">
+                <span>{{user.profile.nomber_card}}</span>
+            </div>
+            <div class="my_info">
+                <div class="avatar">
+                    <img src="/{{ user.profile.img.url }}" alt=""   />
+                    
+                    </br></br></br>
+                    <a href="{%   url 'user_update' %}" class="rich_link">изменить данные</a>
+                </div>
+                <div class="info_text">
+                    
+                    <h3>Личные данные</h3>
+                    <h4><b>Логин</b><br/>{{user.username}}</h4>
+                    <h4>{{user.last_name}}<br/>{{user.first_name}}</h4>
+                    <p>{{user.email}}</p>
+                    <p><strong>{{ user.profile.nomber_phone }}</strong></p>
+                    <p>&nbsp;</p> 
+                    <a href="{%   url 'exit' %}" class="rich_link">выйти</a>
+                </div>
+            </div>
+
+    
+            
+        
+    {% else %}
+       <p> Вы не авторизованы </p>
+        <a href="{%   url 'register' %}"  class="btn btn-outline-secondary mr-2">Пройти регистрацию</a>
+        <a href="{%   url 'user' %}" class="btn btn-outline-secondary">Авторизоваться</a>
+    {% endif %}
+    <div id="stop"> </div>
+    <div id="stop"> </div>
+
+{% endblock %}

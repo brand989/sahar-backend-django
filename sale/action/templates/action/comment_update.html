@@ -1,0 +1,19 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+
+<h2>Изменить комментарий</h2>
+        <div class="rich_form_box reg_form" >
+            
+            <form method="POST">
+                {% csrf_token %}
+                <table>{{ form.as_table }}</table> 
+                <br>
+                <div class="submit">
+                    	
+                    <input type="submit" value="Изменить комментарий" />
+                </div> 
+            </form>
+            <div id="stop"> </div>
+            <div id="stop"> </div>
+{% endblock %}

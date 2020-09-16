@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="ru-RU">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="ru-RU">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="ru-RU" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!--meta name="viewport" content="width=device-width" /-->
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+
+<title>САХАР | Проект рекламного агентства Креатив</title>
+<link href='http://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel='stylesheet' id='normalize-style-css'  href="{% static 'action/css/normalize.css' %}" type='text/css' media='all' />
+<link rel='stylesheet' id='main-style-css'  href="{% static 'action/css/main.css' %}"  type='text/css' media='all' />
+
+<script type='text/javascript' src="{% static 'action/js/jquery-1.9.1.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'action/js/jquery-migrate-1.1.1.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'action/js/jquery.cycle.js' %}"></script>
+<script type='text/javascript' src="{% static 'ajs/myscript.js' %}"></script>
+<!--[if lt IE 9]>
+<script src='js/html5shiv.js'></script>
+<![endif]-->
+</head>
+
+<body>
+    <div class="site">
+        <header id="header">
+            <a class="logo" href="/" title="САХАР | Проект рекламного агентства Креатив" rel="home"></a>
+            <div class="header_in">
+                <ul class="follow_us">
+                    <li><a href="#" class="icon_tube"></a></li>
+                    <li><a href="#" class="icon_ok"></a></li>
+                    <li><a href="#" class="icon_v"></a></li>
+                    <li><a href="#" class="icon_f"></a></li>
+                    <li><a href="#" class="icon_t"></a></li>
+                </ul>
+                <div class="city">
+                    <p>Ваш город:&nbsp;&nbsp;<a href="#">Москва</a></p>
+                    <div class="header_dropdown">
+                        <img src="{% static 'action/img/bg_nosik.png' %}" alt="" />
+                        <ul>
+                            <li><a href="#">Адыгейск</a></li>
+                            <li><a href="#">Адыгея</a></li>
+
+                        </ul>
+                    </div>
+                </div>	
+                <div class="my_account">
+                    <p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}">{{ user.username }}</a>
+                    {% else %}
+                        <a href="{% url 'user' %}">Войти</a>
+                    {% endif %}
+                    </p>
+                </div>    
+            </div>		
+            <div class="nav_box">
+                <nav class="menu">
+                    <li><a href="{% url 'get_card' %}">Получить карту </a></li>
+                    <li><a href="{% url 'about' %}">О проекте</a></li>
+                    <li><a href="{% url 'catalog' %}">Каталог скидок</a></li>
+                    <li><a href="{% url 'partners' %}">Партнерам</a></li>
+                    <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
+                </nav>
+            </div>	
+        </header>     
+        {% if messages %}
+                    {%  for mes in messages%}
+                        <div class="alert alert-success">
+                            {{ mes }}
+                        </div>
+                    {%endfor%}
+        {% endif %}   
+{% block main_section %}
+
+{% endblock %}
+    </div>
+
+    <footer id="footer">
+        <div class="cont_in">
+            <menu>
+            <li><a href="{% url 'about' %}">О проекте</a></li>
+            <li><a href="{% url 'catalog' %}">Каталог скидок</a></li>
+            <li><a href="{% url 'partners' %}">Партнерам</a></li>
+            </menu>                      
+            
+            <p class="copy">&copy; 2013 г., Проект рекламного агентства "Креатив". Все права защищены</p>
+        </div>
+    </footer> 
+
+
+</body>

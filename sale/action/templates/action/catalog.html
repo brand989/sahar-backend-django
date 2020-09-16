@@ -1,0 +1,55 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<section class="content">
+    <section class="bread_crumbs">
+        <ul><li class="home"><a href="{% url 'index' %}">Главная</a></li><li>Каталог скидок</li></ul>                     
+</section>
+<article> 
+    <header class="page-header">
+        <h1>Каталог скидок</h1>
+    </header>
+   <!--
+     <section class="catalog_search_box">
+        <form action="#" name="catalog_search">
+            <div class="checkbox">
+                <label><input type="checkbox" value="" /> купить</label>
+                <label><input type="checkbox" value="" /> покушать</label>
+                <label><input type="checkbox" value="" /> заказать услугу</label>
+                <label><input type="checkbox" value="" /> развлечься</label>
+                <label><input type="checkbox" value="" /> уход за собой</label>
+            </div>
+            <div class="submit"><input type="submit" value="найти" /></div>
+            <div class="text"><input type="text" value="я ищу..." class="autoclear" /></div>
+        </form>
+    </section>
+    -->
+    
+    <section id="catalog" class="js-masonry" data-masonry-options='{"columnWidth": 440, "itemSelector": ".item"}'>
+       {% for sec in section %}
+        <div class="item">
+            <header class="catalog-header">
+                <img src="/{{ sec.img.url }}" alt="" width="40" />
+                <h3>{{ sec.name }}</h3>
+            </header>    
+            <ul>
+                {% for cat in category %}
+                    {% if cat.section == sec %}
+                        <li><a href="{% url  'action_category_list' cat.pk %}">{{ cat.name }}</a> </li>
+                       <!-- 
+                           {%for act in action%}
+                                {% if act.category == cat %}
+                                   
+                                {% endif %}
+                            {%endfor%} -->
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+   
+</article>
+<div id="stop"> </div>
+
+{% endblock %}

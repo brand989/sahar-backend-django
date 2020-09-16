@@ -1,0 +1,128 @@
+{% extends 'action/wrapper.html' %}
+
+{% block main_section %}
+<section class="content">
+    <section class="bread_crumbs">
+        <ul><li class="home"><a href="{% url 'index' %}">Главная</a></li><li><a href="{% url 'catalog' %}">Каталог скидок</a></li><li><a href="{% url 'action_category_list' object.category.id %}">{{object.category.name}}</a></li><li>{{object.title}}</li></ul>        
+</section>
+<article> 
+    <header class="page-header">
+        <h1>{{ object.title }}</h1>
+    </header>
+    
+    <section class="partner-page-header">
+        <section class="partner_header_text">
+            <div class="partner_header_text_in">
+                <h3>{{ object.title }}</h3>
+                <span class="discount">размер скидки {{ object.sale }}%</span>
+                <p>Телефон: <strong>{{ object.phone }}</strong><br />
+                Сайт: <a href="#"><strong>{{ object.site }}</strong></a></p>
+                <p>Адрес: <strong>{{ object.adress }}</p>
+                <a href="{{ object.url_adress }}" class="btn_partner_header">Посмотреть на карте</a>
+            </div>
+        </section>
+        <section id="int_slider_box">
+            <img src="/{{ object.img.url }}" alt="" width="620" />
+
+        </section>
+        <a href="{% url 'get_card' %}" class="partner-page-card activate_card">Получить карту</a>
+        <a href="{% url 'partners' %}" class="partner-page-card get_card">Стать партнером</a>
+        <div class="clear"></div>
+        
+        <div id="activate_card" style="display:none;">
+            <h3>забронировать карту</h3>
+
+            <form action="#" id="book_card_form" class="rich_form">
+            <div class="text">
+                <label for="f_name">Имя получателя</label>
+                <input type="text" id="f_name" name="f_name" value="" />
+            </div>
+            <div class="text">
+                <label for="l_name">Фамилия получателя</label>
+                <input type="text" id="l_name" name="l_name" value="" />
+            </div>
+            <div class="text">
+                <label for="contact_phone">Телефон</label>
+                <input type="text" id="contact_phone" name="contact_phone" value="" />
+            </div>
+            <div class="text">
+                <label for="contact_email">E-mail</label>
+                <input type="text" id="contact_email" name="contact_email" value="" />
+            </div>
+            <div class="select two_blocks">
+                <div class="block_left">
+                    <label for="sex">Пол</label>
+                    <select id="sex" name="sex"><option>мужской</option></select>
+                </div>
+                <div class="block_right">
+                    <label for="age">Возраст</label>
+                    <select id="age" name="age"><option>18</option></select>
+                </div>  
+                <div class="clear"></div>  
+            </div>  
+            <div class="checkbox two_blocks">
+                <div class="block_left">
+                    <label><input type="checkbox" value="" /> получать емейл рассылку</label>
+                </div>
+                <div class="block_right">
+                    <label><input type="checkbox" value="" /> получать sms рассылку</label>
+                </div>  
+                <div class="clear"></div>  
+            </div>  
+
+            <div class="submit">
+                <input type="submit" value="отправить" />
+            </div> 
+            </form>
+        </div>
+    </section>
+    <section class="partner-description">
+        <ul id="tabs">
+            <li><a href="#about_studio">О студии</a></li>
+            
+        </ul>
+        <div id="about_studio">
+            <p>{{ object.text }}</p>
+        </div>
+        <div id="timetable"></div>
+        <div id="workout"></div>
+        <div id="enroll"></div>
+    </section> 
+    
+    
+    <article> 
+        <section class="comments">
+            <h4 class="entry_comments">Комментарии</h4>
+            {% if user.is_authenticated %}
+                <a href="{% url 'creat_comments' object.id %}" class="btn_comments">Написать комментарий</a>
+            {% else %}
+                <a href="{% url 'user' %}"class="btn_comments">Авторизоваться и написать комментарий</a>
+            {% endif %}
+        </section>
+        
+            <div>
+                <ul class="comments_line"> 
+                    {% for com in comments %}
+                            <li >
+                                <article> 
+                                    <header class="comments-header">
+                                        <h5>Re: {{ com.partner.title }}</h5>
+                                        {{ com.date}} от пользователя <strong>{{ com.avtor }}</strong>
+                                        {% if com.avtor == user %}
+                                           
+                                            <a href="{% url 'comment-delete' com.id %}" class="btn">Удалить отзыв</a>
+                                        {% endif %}
+                                    </header>
+                                    <p>{{ com.text }}</p>
+                                    </article>
+                            </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    
+    </article>
+    
+<article> 
+   
+<div id="stop"> </div>
+{% endblock %}
