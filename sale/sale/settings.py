@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['sahar.dzygman.com','www.sahar.dzygman.com']
 
-4
+41
 # Application definition
 
 INSTALLED_APPS = [
